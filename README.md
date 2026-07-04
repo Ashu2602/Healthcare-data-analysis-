@@ -1,4 +1,4 @@
-# Piedmont Healthcare Analysis — Patient Segmentation & Cost Prediction
+# Synthea Healthcare Analysis — Patient Segmentation & Cost Prediction
 
 An end-to-end analysis of real Synthea synthetic patient records: exploratory analysis,
 RFM patient segmentation, a high-cost patient classifier, and a procedure cost regressor —
