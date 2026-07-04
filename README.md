@@ -4,6 +4,14 @@ An end-to-end analysis of real Synthea synthetic patient records: exploratory an
 RFM patient segmentation, a high-cost patient classifier, and a procedure cost regressor —
 built as a local, script-based pipeline (no notebooks, no synthetic-data fabrication).
 
+## Why this project
+
+Most portfolio healthcare-analytics projects stop at a dashboard. This one is built the way
+I'd want to defend it in an interview: every modeling decision is checked against a specific
+failure mode before it's trusted — target leakage, feature circularity, group leakage across
+train/test, and cherry-picked metrics — and the checks are documented inline, not just in my
+head. The goal is a small set of models I can fully explain, not a large set I can't.
+
 ## Data
 
 [Synthea](https://synthetichealth.github.io/synthea/) is an open-source synthetic patient
@@ -27,7 +35,7 @@ piedmont_main.py
 Run the whole thing with:
 
 ```bash
-pip install -r piedmont_requirements.txt
+pip install -r requirements.txt
 python piedmont_main.py
 ```
 
@@ -89,6 +97,15 @@ than picking whichever metric looks better.
 
 Python · pandas · scikit-learn (RandomForestClassifier / RandomForestRegressor) ·
 matplotlib · seaborn
+
+## Next steps
+
+- **Encounter-level seasonality** — condition rates (sinusitis, bronchitis) suggest a
+  seasonal pattern worth quantifying against encounter volume over time.
+- **Comorbidity association mining** — market-basket analysis on `conditions.csv` to find
+  which conditions co-occur, beyond the top-15 frequency list in the EDA.
+- **Calibration check on the high-cost classifier** — confirm predicted probabilities are
+  well-calibrated (not just well-ranked) before using them for a resource-allocation cutoff.
 
 ## Project structure
 
